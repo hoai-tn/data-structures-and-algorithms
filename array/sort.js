@@ -49,7 +49,6 @@ const partition = (a, l, r) => {
   return i;
 };
 const quickSortC = (a, l, r) => {
-  console.log({ l, r });
   if (l > r) return;
   let pivot = partition(a, l, r);
   quickSort(a, l, pivot - 1);
@@ -82,8 +81,8 @@ const quickSort = (a) => {
 };
 let array = [2, 10, 9, 3, 2, 8, 5, 1, 3, 2, 4];
 /* selectSort(array) */
-// insertionSort(array);
+insertionSort(array);
 // bubbleSort(array);
- const arrQuickSort = quickSort(array);
- console.log(arrQuickSort);
+//  const arrQuickSort = quickSort(array);
+//  console.log(arrQuickSort);
 console.log(array);

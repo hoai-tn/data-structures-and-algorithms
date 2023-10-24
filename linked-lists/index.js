@@ -1,3 +1,19 @@
+/*
+
+
+Linked list (danh sách liên kết) là một cấu trúc dữ liệu phổ biến trong lập trình, dùng để lưu trữ và quản lý một tập hợp các phần tử dữ liệu (nodes).
+Các phần tử (nodes) trong danh sách liên kết được tổ chức dưới dạng một chuỗi, mỗi node chứa dữ liệu và một liên kết (thường là một tham chiếu)
+đến node tiếp theo trong danh sách
+
+advantages:
+- không được lưu trữ ở các vị trí bộ nhớ liền kề không giống như mảng.
+
+Disadvanrages:
+ - More memory is required in the linked list as compared to an array. 
+Bởi vì trong danh sách liên kết cũng cần có một con trỏ để lưu trữ địa chỉ của phần tử tiếp theo và nó cần thêm bộ nhớ cho chính nó. 
+
+*/
+
 class Node {
   constructor(value) {
     this.value = value;
@@ -88,22 +104,18 @@ class LinkedList {
 
 // Function to swap the nodes
 function swap(ptr1, ptr2) {
-  let tmp = ptr2.data;
+  let tmp = ptr2.value;
   ptr2.value = ptr1.value;
   ptr1.value = tmp;
 }
 
 // Function to sort the list
 function bubbleSort(head) {
-  let i, j;
   let swapped;
-
   if (head == null) return;
-
   do {
     swapped = false;
     let current = head;
-
     while (current.next != null) {
       if (current.value > current.next.value) {
         swap(current, current.next);
@@ -113,6 +125,7 @@ function bubbleSort(head) {
     }
   } while (swapped);
 }
+
 const node1 = new Node(3);
 const node2 = new Node(2);
 const node3 = new Node(1);
@@ -126,6 +139,7 @@ list.add(22);
 console.log(JSON.stringify(list));
 list.insertAt(4, 2);
 // console.log(list.removeFrom(3));
+bubbleSort(list.head);
 console.log(JSON.stringify(list));
 
 // console.log(list.getFirst())

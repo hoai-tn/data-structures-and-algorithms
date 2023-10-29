@@ -114,23 +114,58 @@ class LinkedList {
 function reverse(node) {
     let prev = null
     let next = null
-    let current = node
+    let current = node// 1 -> 2 -> 3 -> null
     while (current) {
-        next = current.next
-        current.next = prev
-        prev = current
-        current = next
+        next = current.next // use temp for loop
+        current.next = prev // 1 -> prev(null) | 2 -> prev1(1 -> null) | 3 -> prev2(2 - 1 - null) (lấy current next trỏ sang prev)
+        prev = current // prev1 1 -> null | prev2 2 -> 1 -> null | prev3 3 - 2 - 1 null (gán lại current sau khi trỏ)
+        current = next // get temp for loop
     }
     return prev
 }
 //Rotate a Linked List
 
-function rotate () {
-    
+function rotate(head, k) {
+    if (k == 0) return
+    // Let us understand the
+    // below code for example k = 4
+    // and list = 10->20->30->40->50->60.
+    var current = head
+    // current will either point to kth
+    // or NULL after this
+    // loop. current will point to node
+    // 40 in the above example
+    // get tail -> k -> ...
+    var count = 1
+    while (count < k && current != null) {
+        current = current.next
+        count++
+    }
+    // If current is NULL, k is greater
+    // than or equal to count
+    // of nodes in linked list.
+    // Don't change the list in this case
+    if (current == null) return
+    //   giữ kthNode dùng cho việc đánh dấu đầu và cuối phần tử
+    //  tail -> k -> ....
+    // để đánh dầu đầu -> next qua node K và gáng cho head
+    // để đánh dấu cuối -> tail.next = null
+    var kthNode = current
+    // current will point to last
+    // node after this loop
+    // current will point to node
+    // 60 in the above example
+    while (current.next != null) current = current.next
+    // current.next = head => 'next' chung address voi head va kthNode
+    // link phan tu cuoi cung voi phan tu dau
+    current.next = head
+    // ktNode =  tail -> k -> ....
+    // gang K for head
+    head = kthNode.next
+    // change next of kth node to null
+    kthNode.next = null
+    return head
 }
-
-
-
 
 // Function to swap the nodes
 function swap(ptr1, ptr2) {
@@ -171,8 +206,11 @@ list.insertAt(4, 2)
 bubbleSort(list.head)
 console.log(JSON.stringify(list))
 
-console.log('revert')
-list.head = reverse(list.head)
+// console.log('revert')
+// list.head = reverse(list.head)
+
+console.log('rotate')
+list.head = rotate(list.head, 4)
 console.log(JSON.stringify(list))
 
 // console.log(list.getFirst())

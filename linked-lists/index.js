@@ -109,12 +109,21 @@ class LinkedList {
         }
         return low.value
     }
+    removeMiddle() {
+        const mid = Math.floor(this.size() / 2)
+        let current = this.head
+
+        for (let i = 1; i < mid; i++) {
+            current = current.next
+        }
+        current.next = current.next.next// 1 -> 3 -> 4 head.next.next(1) => 1 -> 4  
+    }
 }
 //Reverse a Linked List
 function reverse(node) {
     let prev = null
     let next = null
-    let current = node// 1 -> 2 -> 3 -> null
+    let current = node // 1 -> 2 -> 3 -> null
     while (current) {
         next = current.next // use temp for loop
         current.next = prev // 1 -> prev(null) | 2 -> prev1(1 -> null) | 3 -> prev2(2 - 1 - null) (lấy current next trỏ sang prev)
@@ -190,6 +199,20 @@ function bubbleSort(head) {
     } while (swapped)
 }
 
+// returns the value at the Nth node from the end of the Linked List.
+const findNthNode = (head, n) => {
+    let length = 0
+    let temp = head
+    while (temp) {
+        length++
+        temp = temp.next
+    }
+    temp = head
+    for (let i = 1; i < length - n + 1; i++) {
+        temp = temp.next
+    }
+    return temp.value
+}
 const node1 = new Node(3)
 const node2 = new Node(2)
 const node3 = new Node(1)
@@ -209,8 +232,9 @@ console.log(JSON.stringify(list))
 // console.log('revert')
 // list.head = reverse(list.head)
 
-console.log('rotate')
-list.head = rotate(list.head, 4)
+// console.log('rotate')
+// list.head = rotate(list.head, 4)
+list.removeMiddle()
 console.log(JSON.stringify(list))
 
-// console.log(list.getFirst())
+// console.log(findNthNode(list.head, 5))

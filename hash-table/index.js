@@ -37,17 +37,6 @@ class HashTable {
         }
         return false
     }
-    // remove(key) {
-    //     const index = this._hash(key)
-
-    //     if (this.table[index] && this.table[index].length) {
-    //         this.table[index] = []
-    //         this.size--
-    //         return true
-    //     } else {
-    //         return false
-    //     }
-    // }
 }
 
 const ht = new HashTable()
@@ -56,6 +45,6 @@ ht.set('France', 100)
 ht.set('Spain', 110)
 
 console.log(ht.table)
-console.log(ht.remove("Frances"))
+console.log(ht.remove("France"))
 console.log(ht.table)
 

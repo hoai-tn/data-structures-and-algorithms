@@ -1,3 +1,4 @@
+'use strict'
 /*
 
 
@@ -116,7 +117,21 @@ class LinkedList {
         for (let i = 1; i < mid; i++) {
             current = current.next
         }
-        current.next = current.next.next// 1 -> 3 -> 4 head.next.next(1) => 1 -> 4  
+        current.next = current.next.next // 1 -> 3 -> 4 head.next.next(1) => 1 -> 4
+    }
+    removeDuplicates() {
+        let current = this.head
+
+        while (current && current.next) {
+            // because compare between current and next
+            if (current.value === current.next.value) {
+                current.next = current.next.next // Skip the duplicate node
+            } else {
+                current = current.next
+            }
+        }
+
+        return this.head
     }
 }
 //Reverse a Linked List
@@ -213,6 +228,48 @@ const findNthNode = (head, n) => {
     }
     return temp.value
 }
+
+var removeElements = function (head, value) {
+    if (!head) return null
+    if (head.next === null && head.value === value) return null
+
+    let ref = head
+    while (head.next !== null) {
+        if (ref && ref.value === value) {
+            ref = ref.next // clear first node
+        } else if (head.next.value === value) {
+            head.next = head.next.next
+        } else {
+            head = head.next
+        }
+    }
+    return ref
+}
+var isPalindrome = function (head) {
+    let slow = head,
+        fast = head,
+        prev = null,
+        temp
+
+    while (fast) {
+        fast = fast.next.next
+        slow = slow.next
+    }
+    while (slow) {
+        temp = slow.next
+        slow.next = prev
+        prev = slow
+        slow = temp
+    }
+    while (prev) {
+        if (prev.value !== head.value) return false
+        else {
+            prev = prev.next
+            head = head.next
+        }
+    }
+    return true
+}
 const node1 = new Node(3)
 const node2 = new Node(2)
 const node3 = new Node(1)
@@ -221,20 +278,37 @@ node1.next = node2
 node2.next = node3
 
 let list = new LinkedList(node1)
-list.add(10)
+
+list.add(2)
 list.add(22)
 list.add(32)
+
 list.insertAt(4, 2)
 // console.log(list.removeFrom(3));
 bubbleSort(list.head)
-console.log(JSON.stringify(list))
+// console.log(JSON.stringify(list.head))
 
 // console.log('revert')
 // list.head = reverse(list.head)
 
 // console.log('rotate')
 // list.head = rotate(list.head, 4)
-list.removeMiddle()
-console.log(JSON.stringify(list))
+// list.removeMiddle()
+// list.removeDuplicates()
 
+// console.log(list.removeFrom(3))
+const node4 = new Node(1)
+
+let listForPalindrome = new LinkedList(node4)
+
+listForPalindrome.add(2)
+listForPalindrome.add(3)
+listForPalindrome.add(3)
+listForPalindrome.add(2)
+listForPalindrome.add(2)
+
+console.log(JSON.stringify(listForPalindrome.head))
+
+console.log(isPalindrome(listForPalindrome.head))
+// console.log(JSON.stringify(list.head))
 // console.log(findNthNode(list.head, 5))

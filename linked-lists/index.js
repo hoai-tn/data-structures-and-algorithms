@@ -250,17 +250,19 @@ var isPalindrome = function (head) {
         fast = head,
         prev = null,
         temp
-
+    // lay 1 nua
     while (fast) {
         fast = fast.next.next
         slow = slow.next
     }
+    // revert slow to prev
     while (slow) {
         temp = slow.next
         slow.next = prev
         prev = slow
         slow = temp
     }
+    // compare prev to head
     while (prev) {
         if (prev.value !== head.value) return false
         else {
@@ -291,24 +293,24 @@ bubbleSort(list.head)
 // console.log('revert')
 // list.head = reverse(list.head)
 
-// console.log('rotate')
-// list.head = rotate(list.head, 4)
+console.log('rotate')
+list.head = rotate(list.head, 4)
 // list.removeMiddle()
 // list.removeDuplicates()
 
 // console.log(list.removeFrom(3))
-const node4 = new Node(1)
+// const node4 = new Node(1)
 
-let listForPalindrome = new LinkedList(node4)
+// let listForPalindrome = new LinkedList(node4)
 
-listForPalindrome.add(2)
-listForPalindrome.add(3)
-listForPalindrome.add(3)
-listForPalindrome.add(2)
-listForPalindrome.add(2)
+// listForPalindrome.add(2)
+// listForPalindrome.add(3)
+// listForPalindrome.add(3)
+// listForPalindrome.add(2)
+// listForPalindrome.add(2)
 
-console.log(JSON.stringify(listForPalindrome.head))
+// console.log(JSON.stringify(listForPalindrome.head))
 
-console.log(isPalindrome(listForPalindrome.head))
+// console.log(isPalindrome(listForPalindrome.head))
 // console.log(JSON.stringify(list.head))
 // console.log(findNthNode(list.head, 5))

@@ -81,7 +81,7 @@ const quickSort = (a) => {
 }
 let array = [2, 10, 9, 3, 2, 8, 5, 1, 3, 2, 4]
 /* selectSort(array) */
-insertionSort(array)
+// insertionSort(array)
 // bubbleSort(array);
 //  const arrQuickSort = quickSort(array);
 //  console.log(arrQuickSort);
